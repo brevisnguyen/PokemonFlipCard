@@ -50,7 +50,7 @@ onMounted(() => {
 	}
 
 	var screenW = window.innerWidth
-	var screenH = window.innerHeight - 100
+	var screenH = window.innerHeight - 130
 	var cardPerRow = Math.sqrt(props.cardsContext.length)
 	var totalSpace = 8 * (cardPerRow - 1)
 	cardSize.width = (screenW - totalSpace) / cardPerRow
@@ -99,7 +99,7 @@ function flipHandle(card) {
 <template>
   	<div class="relative flex flex-col justify-between bg-gray-900 text-gray-50 max-h-screen">
 		<div class="container mx-auto grid grid-cols-8 pt-2">
-			<button class="bg-gray-600 rounded-lg col-start-2 py-2" v-on:click="onGoHome">Return Home</button>
+			<button class="bg-gray-600 rounded-lg col-start-2 py-2 md:col-span-2 md:col-start-2" v-on:click="onGoHome">Return Home</button>
 		</div>
 		<div class="m-auto py-3 px-2 sm:px-0 text-center grid gap-2" :class="{ 'grid-cols-4': modes.isEasy, 'grid-cols-6': modes.isNormal, 'grid-cols-8': modes.isHard, 'grid-cols-10': modes.isSuperHard }">
 			<Card 
