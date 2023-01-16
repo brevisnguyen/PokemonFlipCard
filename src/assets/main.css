@@ -3,3 +3,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card-inner {
+	transition: transform 1s;
+	transform-style: preserve-3d;
+}
+.card-back {
+	transform: rotateY(-180deg);
+}
+.is-flipped {
+	transform: rotateY(-180deg);
+}
