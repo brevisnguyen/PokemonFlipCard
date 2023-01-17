@@ -2,7 +2,8 @@
 import { ref, reactive, onBeforeMount, onBeforeUpdate } from 'vue'
 import Card from '@/components/Card.vue'
 
-const images = import.meta.glob('@/assets/images/*.png')
+const images = import.meta.glob('../assets/images/*.png', { as: "url", eager: true })
+console.log(images);
 
 const emit = defineEmits(['onFinish', 'onChangeStage']);
 
@@ -63,6 +64,10 @@ function onGoHome() {
 	emit("onChangeStage", "home")
 }
 
+function getImgUrl(subPath) {
+	return images[subPath];
+}
+
 function flipHandle(card) {
 	if (rules.value.length === 2) {
 		return false
@@ -107,7 +112,7 @@ function flipHandle(card) {
 			v-for="(card, idx) in props.cardsContext"
 			:key="idx"
 			:ref="card => { cards[`card-${idx}`] = card }"
-			:imgBackUrl="`/src/assets/images/${card}.png`"
+			:imgBackUrl="getImgUrl(`../assets/images/${card}.png`)"
 			:card="{ idx, value: card }"
 			:rules="rules"
 			:cardW="cardSize.width"
