@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import frontCardImg from '@/assets/images/icon_back.png'
 
 const isFlipped = ref(false);
 const isDisabled = ref(false);
@@ -56,10 +57,10 @@ defineExpose({
 			v-on:click="onToggleFlipCard"
 		>
 			<div class="card-font w-full h-full border my-auto border-gray-300 bg-cyan-900 rounded-lg text-center absolute overflow-hidden flex justify-center" style="backface-visibility: visible;">
-				<img src="/src/assets/images/icon_back.png" alt="" class="object-contain">
+				<img :src="frontCardImg" alt="" class="object-contain">
 			</div>
 			<div class="card-back w-full h-full border my-auto border-gray-300 bg-cyan-900 rounded-lg text-center absolute overflow-hidden flex justify-center" style="backface-visibility: hidden;">
-				<img :src="`/src/assets/${props.imgBackUrl}`" alt="" class="object-contain">
+				<img :src="props.imgBackUrl" alt="" class="object-contain">
 			</div>
 		</div>
 	</div>

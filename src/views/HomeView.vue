@@ -9,8 +9,8 @@ const onStart = (count) => {
 <template>
 	<div class="relative flex justify-center bg-gray-900 text-gray-50 h-screen">
 		<div class="max-w-6xl sm:px-6 lg:px-8 text-center m-auto">
-			<h1 class="text-4xl font-bold uppercase">Pokemon Flip Card Game</h1>
-			<h3 class="mt-3">Select mode to start game</h3>
+			<h1 class="text-5xl font-bold uppercase">Pokemon Flip Card Game</h1>
+			<h3 class="mt-3 text-lg">Select mode to start game</h3>
 			<div class="mt-6">
 				<button v-on:click="onStart(16)" class="bg-gray-800 text-white hover:bg-white hover:text-gray-900 w-32 h-32 m-2 rounded-xl border border-gray-50 mr-3 transition-colors duration-300 ease-in-out">
 					<div class="flex flex-col"><span>4x4</span><span>Easy</span></div>

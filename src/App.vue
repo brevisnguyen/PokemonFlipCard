@@ -1,10 +1,10 @@
 <script setup>
 import { ref, reactive } from "vue";
-import Footer from "./components/Footer.vue"
-import HomeView from "./views/HomeView.vue";
-import RecordView from "./views/RecordView.vue"
-import PlayView from './views/PlayView.vue'
-import shuffled from "./utils/array"
+import Footer from "@/components/Footer.vue"
+import HomeView from "@/views/HomeView.vue";
+import RecordView from "@/views/RecordView.vue"
+import PlayView from '@/views/PlayView.vue'
+import shuffled from "@/utils/array"
 
 const stage = ref('home')
 const finishedTime = ref(0)

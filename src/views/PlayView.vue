@@ -1,6 +1,8 @@
 <script setup>
-import { ref, reactive, onMounted, onBeforeUpdate } from 'vue'
-import Card from '../components/Card.vue'
+import { ref, reactive, onBeforeMount, onBeforeUpdate } from 'vue'
+import Card from '@/components/Card.vue'
+
+const images = import.meta.glob('@/assets/images/*.png')
 
 const emit = defineEmits(['onFinish', 'onChangeStage']);
 
@@ -38,7 +40,7 @@ onBeforeUpdate(() => {
 	cards.value = []
 })
 
-onMounted(() => {
+onBeforeMount(() => {
 	if (props.cardsContext.length == 16) {
 		modes.isEasy = true
 	} else if (props.cardsContext.length == 36) {
@@ -55,7 +57,6 @@ onMounted(() => {
 	var totalSpace = 8 * (cardPerRow - 1)
 	cardSize.width = (screenW - totalSpace) / cardPerRow
 	cardSize.height = (screenH - totalSpace) / cardPerRow
-	console.log(cardSize);
 })
 
 function onGoHome() {
@@ -106,7 +107,7 @@ function flipHandle(card) {
 			v-for="(card, idx) in props.cardsContext"
 			:key="idx"
 			:ref="card => { cards[`card-${idx}`] = card }"
-			:imgBackUrl="`images/${card}.png`"
+			:imgBackUrl="`/src/assets/images/${card}.png`"
 			:card="{ idx, value: card }"
 			:rules="rules"
 			:cardW="cardSize.width"
