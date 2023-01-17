@@ -1,9 +1,8 @@
 <script setup>
-import { ref, reactive, onBeforeMount, onBeforeUpdate } from 'vue'
+import { ref, reactive, onBeforeMount, onBeforeUpdate, onMounted } from 'vue'
 import Card from '@/components/Card.vue'
 
 const images = import.meta.glob('../assets/images/*.png', { as: "url", eager: true })
-console.log(images);
 
 const emit = defineEmits(['onFinish', 'onChangeStage']);
 
@@ -19,6 +18,13 @@ const cardSize = reactive({
 	height: ''
 })
 
+const timer = reactive({
+	hour: '00',
+	min: '00',
+	sec: '00',
+})
+
+const totalSeconds = ref(0)
 const rules = ref([])
 const cards = ref([])
 const correctCards = ref(0)
@@ -59,6 +65,18 @@ onBeforeMount(() => {
 	cardSize.width = (screenW - totalSpace) / cardPerRow
 	cardSize.height = (screenH - totalSpace) / cardPerRow
 })
+
+onMounted(() => {
+	setInterval(setTimer, 1000)
+})
+
+function setTimer() {
+	++totalSeconds.value
+	var time = new Date(totalSeconds.value * 1000).toISOString()
+	timer.hour = time.substring(11, 13)
+	timer.min = time.substring(14, 16)
+	timer.sec = time.substring(17, 19)
+}
 
 function onGoHome() {
 	emit("onChangeStage", "home")
@@ -106,6 +124,7 @@ function flipHandle(card) {
   	<div class="relative flex flex-col justify-between bg-gray-900 text-gray-50 max-h-screen">
 		<div class="container mx-auto grid grid-cols-8 pt-2">
 			<button class="bg-gray-600 rounded-lg col-start-2 py-2 md:col-span-2 md:col-start-2" v-on:click="onGoHome">Return Home</button>
+			<div class="md:col-start-5 col-start-4 flex text-lg"><span class="my-auto sm:mr-2 mr-5">Timer: </span><span class="my-auto">{{ timer.hour }}:{{ timer.min }}:{{ timer.sec }}</span></div>
 		</div>
 		<div class="m-auto py-3 px-2 sm:px-0 text-center grid gap-2" :class="{ 'grid-cols-4': modes.isEasy, 'grid-cols-6': modes.isNormal, 'grid-cols-8': modes.isHard, 'grid-cols-10': modes.isSuperHard }">
 			<Card 
